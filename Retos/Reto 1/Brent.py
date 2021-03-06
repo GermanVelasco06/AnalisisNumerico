@@ -1,9 +1,22 @@
+import matplotlib.pyplot as plt
 from scipy import optimize
+
 
 #https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.brentq.html
 #https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.newton.html
 #https://github.com/scipy/scipy/blob/v1.6.1/scipy/optimize/zeros.py#L650-L777
 #https://github.com/scipy/scipy/blob/5ab7426247900db9de856e790b8bea1bd71aec49/scipy/optimize/zeros.py#L70
+def graficas (f):
+    X = []
+    Y = []
+    for x in range(-3,4,1):
+        y = f(x)
+        X.append(x)
+        Y.append(y)
+
+    plt.plot(X,Y)
+    plt.grid()
+    plt.show()
 
 def f(x):
     return x**3 - 2*x**2 + (4/3)*x - (8/27)
@@ -13,9 +26,10 @@ def fun(x):
 
 print("Reto 1")
 print("\nPRIMER PUNTO - ALGORITMO DE BRENT")
+graficas(f)
 rep1 = True
 while rep1:
-    print("\nFuncion a evaluar: x^3 - 2x^2 + 4/3x - 8/27")
+    print("\nFuncion a evaluar: x^3 - 2x^2 + 4x/3 - 8/27")
     a = float(input("\nIngrese el primer punto: "))
     b = float(input("Ingrese el segundo punto: "))
     x0 = float(input("(N)Ingrese el punto inicial x0: "))
@@ -26,6 +40,8 @@ while rep1:
     print("\nRaiz Metodo Newton = {}".format(t))
     print("Numero iteraciones Metodo Newton = {}".format(v.iterations))
     print("Diferencia entre Newton y Brent es de {}".format(abs(r - t)))
+    print("\nDiferencia del metodo de Brent con el resultado de wolfram = {}".format(abs(r-(2/3))))
+    print("\nDiferencia del metodo de Newton con el resultado de wolfram = {}".format(abs(t-(2/3))))
     rta1 = input("\nDesea evaluar otro intervalo? s(si)/n(no): ")
     rta1 = rta1.lower()
     if (rta1 == 'n'):
